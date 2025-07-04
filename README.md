@@ -1,61 +1,66 @@
 # Brain MRI Tumor Classifier (Keras + CNN)
 
-A Convolutional Neural Network (CNN)-based deep learning model for classifying brain tumors in MRI images into four categories using the Brain Tumor Classification MRI dataset from Kaggle.
+A deep learning model built with Keras that classifies brain tumors from MRI scans into four categories using Convolutional Neural Networks (CNNs).
 
-## 🧠 Overview
+---
 
-This project aims to assist in the early detection and classification of brain tumors by analyzing MRI scans with a custom-built CNN model. The model is trained to classify images into four tumor types with high accuracy, leveraging deep learning techniques in Keras.
+## 🧠 Project Overview
+
+This project aims to assist in early brain tumor detection by classifying MRI images into four tumor types. A custom CNN architecture was designed and trained using the Brain Tumor Classification MRI dataset from Kaggle. The model achieves strong performance on unseen data, demonstrating the effectiveness of deep learning in medical imaging.
+
+---
 
 ## 📁 Dataset
 
-- **Source:** [Kaggle - Brain Tumor Classification MRI Dataset](https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri)
-- **Classes:** Glioma, Meningioma, Pituitary Tumor, No Tumor
-- **Format:** RGB MRI images
+- **Source:** [Kaggle - Brain Tumor Classification MRI](https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri)
+- **Classes:** 
+  - Glioma
+  - Meningioma
+  - Pituitary Tumor
+  - No Tumor
+- **Size:** ~3,287 MRI images
+- **Format:** RGB images, various resolutions
+
+---
 
 ## ⚙️ Preprocessing
 
-- Resized images to **150x150** pixels
-- Normalized pixel values to the range [0, 1]
-- Applied data augmentation: rotation, flipping, zoom, contrast adjustment
+- **Resizing:** All images resized to `150x150x3`
+- **Normalization:** Pixel values scaled to `[0, 1]`
+- **Augmentation:** Applied rotation, flipping, zoom, and contrast adjustment to increase robustness and reduce overfitting
 
-## 🧱 CNN Architecture
+---
 
-- Built using Keras `Sequential` API
-- Multiple Conv2D → ReLU → MaxPooling → Dropout blocks
-- Fully connected Dense layers for classification
-- Output layer: `Dense(4, activation='softmax')`
+## 🧱 Model Architecture
+
+- Built using Keras Sequential API
+- Architecture includes:
+  - Multiple `Conv2D + ReLU + MaxPooling + Dropout` blocks
+  - Fully connected Dense layers
+  - Final output layer with `Dense(4, activation='softmax')`
+- Dropout layers added to mitigate overfitting
+
+---
 
 ## 🧪 Training Details
 
-- **Loss Function:** Categorical Crossentropy
 - **Optimizer:** Adam
-- **Metrics:** Accuracy
+- **Loss Function:** Categorical Crossentropy
 - **Epochs:** 20
 - **Batch Size:** 32
-- **Callbacks:** EarlyStopping, ModelCheckpoint
+- **Validation Split:** 10% of training data
+- **Callbacks:** EarlyStopping and ModelCheckpoint can be added for improvement
 
-### 📈 Performance
+---
 
-| Epoch | Training Accuracy | Validation Accuracy |
-|-------|-------------------|---------------------|
-| 1     | 29.7%             | 28.4%               |
-| 10    | 84.4%             | 73.9%               |
-| 20    | **95.9%**         | **86.5%**           |
+## 📈 Performance
 
-> The model demonstrated strong generalization with effective regularization and early stopping.
+| Metric              | Value       |
+|---------------------|-------------|
+| Training Accuracy   | **95.2%**   |
+| Validation Accuracy | **90.2%**   |
+| Final Val Loss      | **0.3458**  |
 
-## 🖥️ Tech Stack
+The model shows strong learning and generalization, making it a good baseline for further enhancement or deployment.
 
-- Python
-- Keras + TensorFlow backend
-- NumPy, Pandas, Matplotlib
-- Scikit-learn
-- KaggleHub (for dataset access)
-
-## 📊 Results
-
-The model achieved:
-- **95.9% training accuracy**
-- **86.5% validation accuracy**
-- Consistent convergence and reduced overfitting through dropout and augmentation
-
+---
